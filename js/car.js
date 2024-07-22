@@ -72,17 +72,23 @@ export class Car {
     }
 
     fillingTheFuelTank(liters) {
-        if (this.engineWorks === true) {
-            return `Prieš pildami degalus, sustabdykite automobilį ir išjunkite variklį.`;
-        }
+        if (typeof liters !== 'number'
+            && liters < 0
+            && Infinity
+            && Nan) {
+                return `Įveskite degalų litrų skaičių (skaičius)`;
+            } 
+            if (this.engineWorks === true) {
+                return `Prieš pildami degalus, sustabdykite automobilį ir išjunkite variklį.`;
+            }
 
-        let x = (this.fuelTankCapacity - this.fuelInTank).toFixed(1);
-        if (liters > x) {
-            return `Į kuro baką galite įpilti tik ${x} litrų ar mažiau kuro. Prašome papildyti automobilį pagal šiuos reikalavimus.`;
-        } 
-        this.fuelInTank = (this.fuelInTank + liters).toFixed(1);
-        return `Į degalų baką įpylėte ${liters} l., dabar jame yra ${this.fuelInTank} litrų kuro.`;
-    }
+            let x = (this.fuelTankCapacity - this.fuelInTank).toFixed(1);
+            if (liters > x) {
+                return `Į kuro baką galite įpilti tik ${x} litrų ar mažiau kuro. Prašome papildyti automobilį pagal šiuos reikalavimus.`;
+            } 
+            this.fuelInTank = (this.fuelInTank + liters).toFixed(1);
+            return `Į degalų baką įpylėte ${liters} l., dabar jame yra ${this.fuelInTank} litrų kuro.`;
+        }
 }
 
 
