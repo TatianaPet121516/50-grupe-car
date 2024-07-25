@@ -33,13 +33,13 @@ export class Car {
             return `Pirmiausia reikia įjungti variklį.`;
         } else { if (this.speed > 0) {
                 return `Automobilis jau pradėjo važiuoti, padidinkite greitį.`;
-                } else {if (this.fuelInTank < (this.fuelConsumption * 2)) {
+                } else if (this.fuelInTank < (this.fuelConsumption * 2)) {
                     return `Nepakanka kuro, reikia papildyti kuro baką.`; 
                     }
                     this.fuelInTank = (this.fuelInTank - this.fuelConsumption * 2).toFixed(1);
                     this.speed = 5;
                     return `Automobilis pradėjo vaziuoti.`;
-                    }
+                    
                 }            
     }
 
@@ -48,13 +48,13 @@ export class Car {
             return `Pirmiausia reikia įjungti variklį.`;
         } else { if (this.speed === 0) {
                 return ` Pirmiausia reikia pradėjo vaziuoti.`;
-                } else {if (this.fuelInTank < this.fuelConsumption) {
+                } else if (this.fuelInTank < this.fuelConsumption) {
                     return `Nepakanka kuro, reikia papildyti kuro baką.`; 
                     }
                     this.speed = 50;
                     this.fuelInTank = +(this.fuelInTank - this.fuelConsumption).toFixed(1);
                     return `Važiuojate automobiliu.`;
-                    }
+                    
                 }
     }
 
@@ -73,9 +73,9 @@ export class Car {
 
     fillingTheFuelTank(liters) {
         if (typeof liters !== 'number'
-            && liters < 0
-            && Infinity
-            && Nan) {
+            || liters < 0
+            || Infinity
+            || Nan) {
                 return `Įveskite degalų litrų skaičių (skaičius)`;
             } 
             if (this.engineWorks === true) {
